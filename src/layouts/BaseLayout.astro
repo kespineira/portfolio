@@ -31,6 +31,29 @@ const { title, description } = Astro.props;
 			addEventListener('load', () => document.documentElement.classList.add('loaded'));
 		</script>
 
+		<script>
+			import { datadogRum } from "@datadog/browser-rum";
+
+			if (typeof window !== 'undefined') {
+				datadogRum.init({
+					applicationId: '1f855497-e1e7-4e60-aaf8-f8f476de16e0',
+					clientToken: 'pub1b0546d292b8bc6c64b2e0ac59b8ec50',
+					site: 'datadoghq.eu',
+					service: 'portfolio',
+					env: 'prod',
+					// Specify a version number to identify the deployed version of your application in Datadog 
+					// version: '1.0.0', 
+					sessionSampleRate: 100,
+					sessionReplaySampleRate: 20,
+					trackUserInteractions: true,
+					trackResources: true,
+					trackLongTasks: true,
+					defaultPrivacyLevel: 'mask-user-input',
+				})
+			}
+		</script>
+
+
 		<style>
 			:root {
 				--_placeholder-bg: linear-gradient(transparent, transparent);
